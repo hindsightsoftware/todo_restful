@@ -20,8 +20,8 @@ module.exports = function(config) {
       {pattern: 'node_modules/backbone/backbone.js', included:true, watching: false},
       {pattern: 'node_modules/backbone.localstorage/backbone.localStorage.js', included:true, watching: false},
       {pattern: 'node_modules/backbone.marionette/lib/backbone.marionette.js', included:true, watching: false},
-      '../node_modules/chai-jquery/chai-jquery.js',
-      '../node_modules/jquery-mockjax/jquery.mockjax.js',
+      'node_modules/chai-jquery/chai-jquery.js',
+      'node_modules/jquery-mockjax/jquery.mockjax.js',
       'scripts/TodoMVC.js',
       'scripts/*.js',
       'test/*.html',
@@ -68,7 +68,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
 
 
     // Continuous Integration mode

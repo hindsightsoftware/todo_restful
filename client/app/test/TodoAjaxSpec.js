@@ -1,17 +1,13 @@
 describe('A test suite', function () {
   var expect = window.expect;
 
-  before(function(done) {
+  before(function() {
 
     this.timeout(50000);
 
     if (window.__html__) {
       document.body.innerHTML = window.__html__['test/app-fixture.html'];
     }
-
-    $("#header").arrive("#new-todo", function() {
-      done();
-    });
 
     TodoMVC.start();
 
