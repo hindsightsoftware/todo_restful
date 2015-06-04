@@ -9,7 +9,7 @@ TodoMVC.module('Todos', function (Todos, App, Backbone) {
 			title: '',
 			completed: false,
 		},
-		
+
 		parse: function(response) {
 			if (response.data) {
 				return response.data[0];
@@ -40,27 +40,47 @@ TodoMVC.module('Todos', function (Todos, App, Backbone) {
 
 	// Todo Collection
 	// ---------------
-	Todos.TodoList = Backbone.Collection.extend({
-		model: Todos.Todo,
+	//Todos.TodoList = Backbone.Collection.extend({
+	//	model: Todos.Todo,
+    //
+	//	url: ENV+'api/todos',
+	//	// Drupal sends models buried inside data
+	//	parse: function(response) {
+	//		return response.data;
+	//	},
+    //
+	//	comparator: 'created',
+    //
+	//	getCompleted: function () {
+	//		return this.filter(this._isCompleted);
+	//	},
+    //
+	//	getActive: function () {
+	//		return this.reject(this._isCompleted);
+	//	},
+    //
+	//	_isCompleted: function (todo) {
+	//		return todo.isCompleted();
+	//	}
+	//});
 
-		url: ENV+'api/todos',
-		// Drupal sends models buried inside data
-		parse: function(response) {
-			return response.data;
-		},
+  Todos.TodoList = Backbone.Collection.extend({
+    model: Todos.Todo,
 
-		comparator: 'created',
+    localStorage: new Backbone.LocalStorage('todos-backbone-marionette'),
 
-		getCompleted: function () {
-			return this.filter(this._isCompleted);
-		},
+    comparator: 'created',
 
-		getActive: function () {
-			return this.reject(this._isCompleted);
-		},
+    getCompleted: function () {
+      return this.filter(this._isCompleted);
+    },
 
-		_isCompleted: function (todo) {
-			return todo.isCompleted();
-		}
-	});
+    getActive: function () {
+      return this.reject(this._isCompleted);
+    },
+
+    _isCompleted: function (todo) {
+      return todo.isCompleted();
+    }
+  });
 });
