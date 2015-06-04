@@ -1,14 +1,20 @@
 describe('A test suite', function () {
   var expect = window.expect;
 
-  before(function() {
+  before(function(done) {
+
+    this.timeout(50000);
 
     if (window.__html__) {
       document.body.innerHTML = window.__html__['test/app-fixture.html'];
     }
 
-    // start the TodoMVC app (defined in js/TodoMVC.js)
+    $("#header").arrive("#new-todo", function() {
+      done();
+    });
+
     TodoMVC.start();
+
   });
 
   beforeEach(function() {
@@ -23,15 +29,21 @@ describe('A test suite', function () {
     input.trigger(e);
   };
 
-  it("Add a new Todo", function () {
-    addTodo('TODO A');
-    expect($('#todo-list li').length).to.be.equal(1);
-  });
+  it("Add a new Todo", function (done) {
 
-  it("Deleting TODO", function () {
-    addTodo('This should be deleted');
-    $('#todo-list li:first-child .destroy').click();
-    expect($('#todo-list li').length).to.be.equal(1);
+    $.mockjax({
+      url: "api/todos",
+      responseText: [{ id: 1, title: "Foo", completed: false }],
+
+      onAfterComplete: function() {
+        // do any required cleanup
+        expect($('#todo-list li').length).to.be.equal(1);
+        done();
+      }
+    });
+
+    //addTodo('TODO A');
+
   });
 
 });

@@ -40,47 +40,49 @@ TodoMVC.module('Todos', function (Todos, App, Backbone) {
 
 	// Todo Collection
 	// ---------------
-	//Todos.TodoList = Backbone.Collection.extend({
-	//	model: Todos.Todo,
-    //
-	//	url: ENV+'api/todos',
-	//	// Drupal sends models buried inside data
-	//	parse: function(response) {
-	//		return response.data;
-	//	},
-    //
-	//	comparator: 'created',
-    //
-	//	getCompleted: function () {
-	//		return this.filter(this._isCompleted);
-	//	},
-    //
-	//	getActive: function () {
-	//		return this.reject(this._isCompleted);
-	//	},
-    //
-	//	_isCompleted: function (todo) {
-	//		return todo.isCompleted();
-	//	}
-	//});
+	Todos.TodoList = Backbone.Collection.extend({
+		model: Todos.Todo,
 
-  Todos.TodoList = Backbone.Collection.extend({
-    model: Todos.Todo,
+    //localStorage: new Backbone.LocalStorage('todos-backbone-marionette'),
 
-    localStorage: new Backbone.LocalStorage('todos-backbone-marionette'),
+		url: 'http://live-todo-restful.pantheon.io/api/todos',
+		// Drupal sends models buried inside data
+		parse: function(response) {
+			return response.data;
+		},
 
-    comparator: 'created',
+		comparator: 'created',
 
-    getCompleted: function () {
-      return this.filter(this._isCompleted);
-    },
+		getCompleted: function () {
+			return this.filter(this._isCompleted);
+		},
 
-    getActive: function () {
-      return this.reject(this._isCompleted);
-    },
+		getActive: function () {
+			return this.reject(this._isCompleted);
+		},
 
-    _isCompleted: function (todo) {
-      return todo.isCompleted();
-    }
-  });
+		_isCompleted: function (todo) {
+			return todo.isCompleted();
+		}
+	});
+
+  //Todos.TodoList = Backbone.Collection.extend({
+  //  model: Todos.Todo,
+  //
+  //  localStorage: new Backbone.LocalStorage('todos-backbone-marionette'),
+  //
+  //  comparator: 'created',
+  //
+  //  getCompleted: function () {
+  //    return this.filter(this._isCompleted);
+  //  },
+  //
+  //  getActive: function () {
+  //    return this.reject(this._isCompleted);
+  //  },
+  //
+  //  _isCompleted: function (todo) {
+  //    return todo.isCompleted();
+  //  }
+  //});
 });

@@ -21,9 +21,11 @@ module.exports = function(config) {
       {pattern: 'node_modules/backbone.localstorage/backbone.localStorage.js', included:true, watching: false},
       {pattern: 'node_modules/backbone.marionette/lib/backbone.marionette.js', included:true, watching: false},
       '../node_modules/chai-jquery/chai-jquery.js',
+      '../node_modules/jquery-mockjax/jquery.mockjax.js',
       'scripts/TodoMVC.js',
       'scripts/*.js',
       'test/*.html',
+      'test/lib/*.js',
       'test/*Spec.js',
     ],
 
@@ -71,7 +73,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: false,
 
     coverageReporter: {
       dir: 'reports/coverage',

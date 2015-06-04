@@ -29,6 +29,7 @@
     "grunt-usemin": "^2.1.1",
     "grunt-wiredep": "^1.7.0",
     "jasmine-core": "^2.1.2",
+    "jquery-mockjax": "^1.6.2",
     "jshint-stylish": "^0.2.0",
     "karma": "^0.12.25",
     "karma-chai": "^0.1.0",
